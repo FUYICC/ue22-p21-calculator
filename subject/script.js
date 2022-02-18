@@ -40,31 +40,44 @@ window.addEventListener("load", () =>{
             let screen = document.getElementsByClassName("calculator__display")[0];
             switch(a){
                 case '=':
-                    console.log('+++++++++++=====')
+                    //console.log('+++++++++++=====')
                     res = 0;
                     while(L.length != 0){
-                        x = L.pop(0);
+                        x = L.shift();
+                        //console.log(x)
                         if (x == "+"){
-                            y = L.pop(0);
-                            L[0] = res + y;
+                            y = L.shift();
+                            L.unshift(res+y);
+                            //console.log(L)
+                        }
+                        if (x == '-'){
+                            y = L.shift();
+                            L.unshift(res-y);
                         }
                         else{res = x;}
                     }
+                    L[0] = res;
                     number = res;
                     screen.textContent = res;
                     break;
                 case 'AC':
-                    console.log('+++++++++++ccc')
+                    //console.log('+++++++++++ccc')
                     screen.textContent = 0;
                     L = [];
                     res = 0;
                     number = 0;
                     break;
                 case "+":
+                    console.log(a);
                     number = 0;
-                    console.log(a)
                     L.push(a);
-                    L.push(number)
+                    L.push(0)
+                    break;
+                case '-':
+                    console.log(a);
+                    number = 0;
+                    L.push(a);
+                    L.push(0)
                     break;
                 default:
                     number = number*10 + parseInt(a);
